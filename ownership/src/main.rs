@@ -4,10 +4,10 @@ fn main() {
     println!("The length of '{}' is {}.", s1, len);
 
     {
-        let r1 = &mut s1;
+        let _r1 = &mut s1;
     }
 
-    let r2 = &mut s1;
+    let _r2 = &mut s1;
     let r3 = &s1;
 
     //println!("The value of r2 is {}.", r2);
