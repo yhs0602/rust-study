@@ -23,7 +23,8 @@ fn main() {
     println!("new string is {:?}", new_string);
     let sliced_word = first_word(&new_string[8..]);
     println!("The first word of {} is {}. slices.", &new_string[8..], sliced_word);
-
+    // let bad_word = "bad word";
+    //let &mut bad_mut = bad_word;
 
 
 }
