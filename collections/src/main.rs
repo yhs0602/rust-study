@@ -65,15 +65,15 @@ fn median(v: &Vec<i32>) -> i32 {
 fn mode(v: &Vec<i32>) -> i32 {
     let mut counts = HashMap::new();
     for i in v {
-        print!("{}", i);
-        let old_count = counts.entry(i).or_insert(0);
+        // print!("{}", *i);
+        let old_count = counts.entry(*i).or_insert(0);
         *old_count += 1;
     }
     // find the max
     let mut max_key_count : Option<(i32, i32)> = None;
 
     for (k, vv) in &counts {
-        println!("{}: {}", k, vv);
+        println!("{}: {}", *k, *vv);
         match max_key_count {
             Some((kkk, vvv)) => {
                 if vvv > *vv {
@@ -81,7 +81,7 @@ fn mode(v: &Vec<i32>) -> i32 {
                 }
             }
             None => {
-                max_key_count = Some((**k, *vv));
+                max_key_count = Some((*k, *vv));
             }
         }
     }
