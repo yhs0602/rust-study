@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn mean(v: &Vec<i32>) -> f32 {
     let mut sum = 0;
     for i in v {
@@ -60,11 +62,48 @@ fn median(v: &Vec<i32>) -> i32 {
    new_vec[new_vec.len()/2]
 }
 
+fn mode(v: &Vec<i32>) -> i32 {
+    let mut counts = HashMap::new();
+    for i in v {
+        print!("{}", i);
+        let old_count = counts.entry(i).or_insert(0);
+        *old_count += 1;
+    }
+    // find the max
+    let mut max_key_count : Option<(i32, i32)> = None;
+
+    for (k, vv) in &counts {
+        println!("{}: {}", k, vv);
+        match max_key_count {
+            Some((kkk, vvv)) => {
+                if vvv > *vv {
+                    max_key_count = Some((kkk, vvv));
+                }
+            }
+            None => {
+                max_key_count = Some((**k, *vv));
+            }
+        }
+    }
+    match max_key_count {
+        Some((k, c)) => {
+            println!("Mode success");
+            return k;
+        }
+        None => {
+            return 0;
+        }
+    }
+
+}
+
 fn main() {
     println!("Hello, world!");
     let vv = vec![1, 2, 3, 19, 2, 3, 77, -11, 4, 0, -111];
-    let sum = mean(&vv);
-    println!("mean: {}", sum);
+    let mean = mean(&vv);
+    println!("mean: {}", mean);
     let median = median(&vv);
     println!("median : {}", median);
+    let mode = mode(&vv);
+    println!("Mode: {}" ,mode);
 }
