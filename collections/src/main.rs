@@ -9,8 +9,7 @@ fn mean(v: &Vec<i32>) -> f32 {
 fn sort(v: & mut [i32]) {
     // in place sort
     let len = v.len();
-    let mut i = 0;
-    if i < 2 {
+    if len < 2 {
         return;
     }
     let (front, back) = v.split_at_mut(len/2);
@@ -45,6 +44,8 @@ fn sort(v: & mut [i32]) {
             break;
         }
     }
+    // write back to original v
+    v.copy_from_slice(&newV);
 }
 
 fn median(v: &Vec<i32>) -> i32 {
